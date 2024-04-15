@@ -1,0 +1,8 @@
+# Ignore compiled Python files
+*.pyc
+
+env/
+
+__pycache__/
+
+.idea/
