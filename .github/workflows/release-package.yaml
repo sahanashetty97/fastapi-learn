@@ -32,25 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-
-      # Build and package your software
-      - name: Build and Package
-        run: |
-          # Add commands to build and package your software
-          echo "Building and packaging your software..."
-          # Add additional build and packaging commands here if needed
-
-      # Upload the package as a release asset
-      - name: Upload Package as Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: .C:\Users\SSHIVAS1\Downloads\FastApi\fastapi-learn
-          asset_name: fastapi-learn.zip
-          asset_content_type: application/zip
+        uses: actions/checkout@v4
 
       # Log in to the Container registry and push the package
       - name: Log in to the Container registry
@@ -66,4 +48,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
