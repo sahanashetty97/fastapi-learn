@@ -17,8 +17,10 @@ jobs:
       - name: Determine tag and commit information
         id: tag_info
         run: |
-          echo "::set-output name=tag_name::$(echo ${GITHUB_REF#refs/tags/})"
-          echo "::set-output name=commit_sha::$(git rev-parse ${GITHUB_REF}^{})"
+          TAG_NAME=$(echo ${GITHUB_REF#refs/tags/})
+          COMMIT_SHA=$(git rev-parse ${GITHUB_REF}^{})
+          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+          echo "COMMIT_SHA=$COMMIT_SHA" >> $GITHUB_ENV
 
       - name: Create Release
         id: create_release
