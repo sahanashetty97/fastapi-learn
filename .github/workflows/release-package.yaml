@@ -1,7 +1,7 @@
 name: Release and Package
 
 on:
-  push:
+  create:
     tags:
       - 'v*'  # Trigger the workflow on tag pushes that start with 'v'
 
