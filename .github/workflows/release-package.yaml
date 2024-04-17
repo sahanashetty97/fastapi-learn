@@ -53,8 +53,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: .C:\Users\SSHIVAS1\Downloads\FastApi\fastapi-learn  # Specify the path to your package
-          asset_name: fastapi-learn.zip  # Specify the name of your package
+          asset_path: .C:\Users\SSHIVAS1\Downloads\FastApi\fastapi-learn
+          asset_name: fastapi-learn.zip
           asset_content_type: application/zip
 
       # Log in to the Container registry and push the package
