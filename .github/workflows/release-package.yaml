@@ -1,9 +1,11 @@
 name: Release and Package
 
 on:
-  create:
+  push:
+    branches:
+      - '**'
     tags:
-      - 'v*'  # Trigger the workflow on tag pushes that start with 'v'
+      - 'v*'
 
 jobs:
   create_release:
