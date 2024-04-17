@@ -54,7 +54,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: .C:\Users\SSHIVAS1\Downloads\FastApi  # Specify the path to your package
-          asset_name: my-package.zip  # Specify the name of your package
+          asset_name: fastapi-learn.zip  # Specify the name of your package
           asset_content_type: application/zip
 
       # Log in to the Container registry and push the package
