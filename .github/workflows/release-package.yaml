@@ -24,8 +24,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{  github.ref }}
-          release_name: Release ${{  github.ref }}
+          tag_name: ${{  github.ref_name }}
+          release_name: Release ${{  github.ref_name }}
           body: |
             This is the release associated with tag ${{  github.ref_name }}.
           draft: false
@@ -53,4 +53,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest    //env.Registry = ghcr.io   //env.image_name = 
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{  github.ref_name }}
