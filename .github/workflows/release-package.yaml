@@ -2,6 +2,8 @@ name: Release and Package
 
 on:
   push:
+    branches:
+      - '**'
     tags:
       - 'v*'
 
@@ -12,25 +14,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Determine tag and commit information
-        id: tag_info
-        run: |
-          TAG_NAME=$(echo ${GITHUB_REF#refs/tags/})
-          COMMIT_SHA=$(git rev-parse ${GITHUB_REF}^{})
-          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
-          echo "COMMIT_SHA=$COMMIT_SHA" >> $GITHUB_ENV
-
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: $TAG_NAME
-          release_name: Release ${{ steps.tag_info.outputs.tag_name }}
+          tag_name: ${{  github.ref_name }}
+          release_name: ${{  github.ref_name }}
           body: |
-            This is the release associated with tag ${{ steps.tag_info.outputs.tag_name }}.
-            Commit SHA: ${{ steps.tag_info.outputs.commit_sha }}
+            This is the release associated with tag ${{  github.ref_name }}.
           draft: false
           prerelease: false
 
